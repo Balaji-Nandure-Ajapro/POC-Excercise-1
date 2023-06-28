@@ -1,0 +1,15 @@
+.main-container {
+  margin-top: 15px;
+}
+
+.selection {
+  display: flex;
+}
+
+.selection span,
+.selection select {
+  margin-right: 10px;
+}
+
+.selection select {
+}

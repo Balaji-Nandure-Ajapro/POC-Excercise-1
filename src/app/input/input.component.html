@@ -1,0 +1,35 @@
+<div class="main-container">
+    <div class="heading-selection-container">
+        <div class="heading">
+            <h3>Country Fuel Capacities</h3>
+        </div>
+
+        <div class="selection">
+            <span>Region: </span>
+            <select (change)="onRegionChangeHandler($event)" class="form-select form-select-sm d-inline-block"
+                aria-label=".form-select-sm example">
+                <option *ngFor="let regions of data; let i = index" [value]="data[i].region">
+                    {{data[i].region}}
+                </option>
+            </select>
+
+            <span>City: </span>
+            <select class="form-select form-select-sm " aria-label=".form-select-sm example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+
+            <span>Year: </span>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="chartdiv" style="height: 600px; width: 100%;"></div>

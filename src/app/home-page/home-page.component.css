@@ -1,0 +1,32 @@
+* {
+  /* border: 1px solid red; */
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 255, 255, 0.1);
+}
+
+.logo-container {
+  flex: 1;
+  display: inline-block;
+  font-family: "Damion", cursive;
+  margin-left: 10px;
+}
+
+.logo {
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.862);
+}
+
+.toggle-container {
+  flex: 1;
+}
+
+.excercise2-container {
+  margin-right: 10px;
+}
+
+.excercise2-container button {
+}
