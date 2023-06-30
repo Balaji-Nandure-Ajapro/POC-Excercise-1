@@ -8,25 +8,22 @@
             <span>Region: </span>
             <select (change)="onRegionChangeHandler($event)" class="form-select form-select-sm d-inline-block"
                 aria-label=".form-select-sm example">
-                <option *ngFor="let regions of data; let i = index" [value]="data[i].region">
-                    {{data[i].region}}
+                <option *ngFor="let region of allRegions; let i = index" [value]="region">
+                    {{region}}
                 </option>
             </select>
 
             <span>City: </span>
-            <select class="form-select form-select-sm " aria-label=".form-select-sm example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select (change)="onCityChangeHandler($event)" class="form-select form-select-sm "
+                aria-label=".form-select-sm example">
+                <option *ngFor="let city of availableCitiesForSelectedRegion; let i=index" [value]="city">{{city}}
+                </option>
             </select>
 
             <span>Year: </span>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select (change)="onYearChangeHandler($event)" class="form-select form-select-sm"
+                aria-label=".form-select-sm example">
+                <option *ngFor="let year of availableYears" [value]="year">{{year}}</option>
             </select>
         </div>
     </div>
