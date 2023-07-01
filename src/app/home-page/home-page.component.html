@@ -5,16 +5,19 @@
     </div>
     <div class="toggle-container">
         <div class="btn-group" role="group" aria-label="Default button group">
-            <button type="button" class="btn btn-outline-primary active">Input</button>
-            <button type="button" class="btn btn-outline-primary">Output</button>
+            <button type="button" [ngClass]="{'active': showChart == 'input'}" (click)="changeChart('input')"
+                class="btn btn-outline-primary">Input</button>
+
+            <button type="button" [ngClass]="{'active': showChart == 'output'}" class="btn btn-outline-primary"
+                (click)="changeChart('output')">Output</button>
         </div>
     </div>
     <div class="excercise2-container">
-        <button class="btn btn-outline-secondary">Exercise 2</button>
+        <button disabled class="btn btn-outline-secondary disabled">Exercise 2</button>
     </div>
 </nav>
 
 <div class="container">
-    <app-input></app-input>
-    <!-- <app-output></app-output> -->
+    <app-input *ngIf="showChart == 'input'"></app-input>
+    <app-output *ngIf="showChart == 'output'"></app-output>
 </div>

@@ -2,6 +2,7 @@
     <div class="heading-selection-container">
         <div class="heading">
             <h3>Country Fuel Capacities</h3>
+            <small>Please select region city and year</small>
         </div>
 
         <div class="selection">
@@ -26,7 +27,13 @@
                 <option *ngFor="let year of availableYears" [value]="year">{{year}}</option>
             </select>
         </div>
+
+        <!-- <div class="container mt-2 w-75">
+            <div class="alert alert-warning" role="alert">
+                <strong>Please select region, city and year</strong>
+            </div>
+        </div> -->
     </div>
 </div>
 
-<div id="chartdiv" style="height: 600px; width: 100%;"></div>
+<div id="chartdiv" style="height: 500px; width: 100%;"></div>
