@@ -31,6 +31,9 @@ export class InputComponent {
   ngOnInit(): void {
     this.fetchFeedsData();
     this.getValuesForRYCFromApi('ANZ', 'Altona', 2005);
+  }
+
+  ngAfterViewInit() {
     this.preparechart();
   }
 
@@ -116,7 +119,6 @@ export class InputComponent {
         delete this.finalValues.Year;
         delete this.finalValues.City;
         delete this.finalValues.Region;
-        // delete this.finalValues.CAP;
 
         console.log('finalValues 1: ', this.finalValues);
         Object.keys(this.finalValues).forEach((key: any) => {
@@ -137,6 +139,12 @@ export class InputComponent {
   }
 
   preparechart() {
+    let divId = 'chartdiv';
+    am5.array.each(am5.registry.rootElements, function (root) {
+      if (root.dom.id == divId) {
+        root.dispose();
+      }
+    });
     var root = am5.Root.new('chartdiv');
 
     // Set themes
@@ -215,54 +223,54 @@ export class InputComponent {
     });
 
     // Set data
-    var data = [
-      {
-        country: 'Cap',
-        value: 2025,
-      },
-      {
-        country: 'China',
-        value: 1882,
-      },
-      {
-        country: 'Japan',
-        value: 1809,
-      },
-      {
-        country: 'Germany',
-        value: 1322,
-      },
-      {
-        country: 'UK',
-        value: 1122,
-      },
-      {
-        country: 'France',
-        value: 1114,
-      },
-      {
-        country: 'India',
-        value: 984,
-      },
-      {
-        country: 'Spain',
-        value: 711,
-      },
-      {
-        country: 'Netherlands',
-        value: 665,
-      },
-      {
-        country: 'South Korea',
-        value: 443,
-      },
-      {
-        country: 'Canada',
-        value: 441,
-      },
-    ];
+    // var data = [
+    //   {
+    //     country: 'Cap',
+    //     value: 2025,
+    //   },
+    //   {
+    //     country: 'China',
+    //     value: 1882,
+    //   },
+    //   {
+    //     country: 'Japan',
+    //     value: 1809,
+    //   },
+    //   {
+    //     country: 'Germany',
+    //     value: 1322,
+    //   },
+    //   {
+    //     country: 'UK',
+    //     value: 1122,
+    //   },
+    //   {
+    //     country: 'France',
+    //     value: 1114,
+    //   },
+    //   {
+    //     country: 'India',
+    //     value: 984,
+    //   },
+    //   {
+    //     country: 'Spain',
+    //     value: 711,
+    //   },
+    //   {
+    //     country: 'Netherlands',
+    //     value: 665,
+    //   },
+    //   {
+    //     country: 'South Korea',
+    //     value: 443,
+    //   },
+    //   {
+    //     country: 'Canada',
+    //     value: 441,
+    //   },
+    // ];
 
-    // let data = this.finalValues2;
+    let data = this.finalValues2;
 
     // let data = this.finalValues;
 
