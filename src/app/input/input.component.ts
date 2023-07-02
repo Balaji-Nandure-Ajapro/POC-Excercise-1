@@ -31,11 +31,10 @@ export class InputComponent {
   ngOnInit(): void {
     this.fetchFeedsData();
     this.getValuesForRYCFromApi('ANZ', 'Altona', 2005);
-  }
-
-  ngAfterViewInit() {
     this.preparechart();
   }
+
+  ngAfterViewInit() {}
 
   // fetch data
   async fetchFeedsData() {
@@ -44,6 +43,7 @@ export class InputComponent {
       // console.log("data", this.data);
       this.extractAllRegions();
       this.updateAvailableData();
+      this.preparechart();
     });
   }
 
@@ -131,12 +131,12 @@ export class InputComponent {
       });
   }
 
-  changeFinalDataFormat(fd: any) {
-    return Object.entries(fd).map(([country, value]) => ({
-      country,
-      value,
-    }));
-  }
+  // changeFinalDataFormat(fd: any) {
+  //   return Object.entries(fd).map(([country, value]) => ({
+  //     country,
+  //     value,
+  //   }));
+  // }
 
   preparechart() {
     let divId = 'chartdiv';
