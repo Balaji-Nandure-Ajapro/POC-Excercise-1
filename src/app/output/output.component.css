@@ -3,3 +3,33 @@
   width: 100%;
   height: 100%;
 }
+
+.graph .card-body {
+  padding: 20px 30px;
+}
+
+.config-capacity-container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.capacity-table-container {
+  overflow: auto;
+}
+
+th,
+td {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.table {
+  margin-bottom: 0;
+  border: 1px;
+}
+
+/* td {
+  background-color: red;
+} */

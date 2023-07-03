@@ -24,7 +24,6 @@ export class InputComponent {
 
   finalValues: any;
   finalValues2: any = [];
-  graphValues: any;
 
   constructor(private service: BackendDataService) {}
 
@@ -85,6 +84,7 @@ export class InputComponent {
       return obj.city == this.selectedCity;
     })[0].years;
     // this.availableYears = this.availableYears[0];
+    this.selectedYear = this.availableYears[0];
     console.log('availableYears: ', this.availableYears);
   }
 
@@ -106,6 +106,7 @@ export class InputComponent {
   onYearChangeHandler(e: any) {
     console.log('Year:', e.target.value);
     this.selectedYear = e.target.value;
+
     this.preparechart();
   }
 

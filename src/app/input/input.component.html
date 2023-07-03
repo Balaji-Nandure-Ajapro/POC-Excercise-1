@@ -1,39 +1,41 @@
-<div class="main-container">
+<div class="card main-container">
     <div class="heading-selection-container">
-        <div class="heading">
+        <div class="heading card-header">
             <h3>Country Fuel Capacities</h3>
             <small>** Please select region city and year</small>
         </div>
 
-        <div class="selection">
-            <span>Region: </span>
-            <select (change)="onRegionChangeHandler($event)" class="form-select form-select-sm d-inline-block"
-                aria-label=".form-select-sm example">
-                <option *ngFor="let region of allRegions; let i = index" [value]="region">
-                    {{region}}
-                </option>
-            </select>
+        <div class="card-body">
+            <div class="selection">
+                <span>Region: </span>
+                <select (change)="onRegionChangeHandler($event)" class="form-select form-select-sm d-inline-block"
+                    aria-label=".form-select-sm example">
+                    <option *ngFor="let region of allRegions; let i = index" [value]="region">
+                        {{region}}
+                    </option>
+                </select>
 
-            <span>City: </span>
-            <select (change)="onCityChangeHandler($event)" class="form-select form-select-sm "
-                aria-label=".form-select-sm example">
-                <option *ngFor="let city of availableCitiesForSelectedRegion; let i=index" [value]="city">{{city}}
-                </option>
-            </select>
+                <span>City: </span>
+                <select (change)="onCityChangeHandler($event)" class="form-select form-select-sm "
+                    aria-label=".form-select-sm example">
+                    <option *ngFor="let city of availableCitiesForSelectedRegion; let i=index" [value]="city">{{city}}
+                    </option>
+                </select>
 
-            <span>Year: </span>
-            <select (change)="onYearChangeHandler($event)" class="form-select form-select-sm"
-                aria-label=".form-select-sm example">
-                <option *ngFor="let year of availableYears" [value]="year">{{year}}</option>
-            </select>
+                <span>Year: </span>
+                <select (change)="onYearChangeHandler($event)" class="form-select form-select-sm"
+                    aria-label=".form-select-sm example">
+                    <option *ngFor="let year of availableYears" [value]="year">{{year}}</option>
+                </select>
+            </div>
+
+            <!-- <div class="container mt-2 w-75">
+                <div class="alert alert-warning" role="alert">
+                    <strong>Please select region, city and year</strong>
+                </div>
+            </div> -->
+            <div id="chartdiv" style="height: 500px; width: 100%;"></div>
         </div>
 
-        <!-- <div class="container mt-2 w-75">
-            <div class="alert alert-warning" role="alert">
-                <strong>Please select region, city and year</strong>
-            </div>
-        </div> -->
     </div>
 </div>
-
-<div id="chartdiv" style="height: 500px; width: 100%;"></div>
