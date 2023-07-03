@@ -13,6 +13,8 @@ export class OutputComponent {
   globalCapacity: any;
   compLimit: any;
   selectedConfiguration: any = 'Config_0';
+  allConfigurations: any = [];
+  selectedConfigurationData: any = [];
 
   constructor(private service: BackendDataService) {}
 
@@ -35,6 +37,12 @@ export class OutputComponent {
       this.sortConfigurationData(this.globalCapacity);
       this.sortConfigurationData(this.compLimit);
 
+      this.allConfigurations = Object.values(this.globalCapacity).map(
+        (item: any) => item.Configuration
+      );
+
+      this.filterSelectedConfigurationData();
+
       // this.globalCapacity.sort(
       //   (a: any, b: any) =>
       //     a.Configuration.split('_')[1] - b.Configuration.split('_')[1]
@@ -43,12 +51,30 @@ export class OutputComponent {
       // this.changeFinalDataFormat(this.globalCapacity)
       console.log('Global Capacity Sorted: ', this.globalCapacity);
       console.log('compLimit Sorted: ', this.compLimit);
+      console.log('allConfigurations: ', this.allConfigurations);
+      console.log(
+        'selectedConfigurationData: ',
+        this.selectedConfigurationData
+      );
 
       this.prepareChart();
     });
   }
 
-  selectCongingChangeHandler(e: any) {}
+  filterSelectedConfigurationData() {
+    this.selectedConfigurationData = this.compLimit.filter((obj: any) => {
+      return obj.Configuration == this.selectedConfiguration;
+    });
+
+    console.log(this.selectedConfigurationData);
+  }
+
+  selectCongingChangeHandler(e: any) {
+    this.selectedConfiguration = e.target.value;
+    this.filterSelectedConfigurationData();
+    console.log('selectedConfiguration: ', this.selectedConfiguration);
+    console.log('selectedConfigurationData: ', this.selectedConfigurationData);
+  }
 
   // changeFinalDataFormat(fd: any) {
   //   return Object.entries(fd).map(([year, value]) => ({
