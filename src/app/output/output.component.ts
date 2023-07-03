@@ -12,9 +12,12 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 export class OutputComponent {
   globalCapacity: any;
   compLimit: any;
+  globalComposition: any;
+
   selectedConfiguration: any = 'Config_0';
   allConfigurations: any = [];
   selectedConfigurationData: any = [];
+  selectedGlobalCompData: any = [];
 
   constructor(private service: BackendDataService) {}
 
@@ -33,9 +36,11 @@ export class OutputComponent {
     await this.service.getModelData().subscribe((data: any) => {
       this.globalCapacity = data.global_cap;
       this.compLimit = data.comp_limit;
+      this.globalComposition = data.global_comp;
 
       this.sortConfigurationData(this.globalCapacity);
       this.sortConfigurationData(this.compLimit);
+      this.sortConfigurationData(this.globalComposition);
 
       this.allConfigurations = Object.values(this.globalCapacity).map(
         (item: any) => item.Configuration
@@ -56,6 +61,7 @@ export class OutputComponent {
         'selectedConfigurationData: ',
         this.selectedConfigurationData
       );
+      console.log('globalComposition: ', this.globalComposition);
 
       this.prepareChart();
     });
@@ -66,7 +72,28 @@ export class OutputComponent {
       return obj.Configuration == this.selectedConfiguration;
     });
 
-    console.log(this.selectedConfigurationData);
+    this.selectedGlobalCompData = this.globalComposition.filter((obj: any) => {
+      return obj.Configuration == this.selectedConfiguration;
+    });
+
+    this.combineCompAndLimitData();
+
+    console.log('selectedConfigurationData: ', this.selectedConfigurationData);
+    // console.log('selectedGlobalCompData', this.selectedGlobalCompData);
+  }
+
+  combineCompAndLimitData() {
+    for (let i = 0; i < this.selectedConfigurationData.length; i++) {
+      const feed = this.selectedConfigurationData[i].Feed;
+      const config = this.selectedConfigurationData[i].Configuration;
+      const match = this.selectedGlobalCompData.find((obj: any) => {
+        return obj.Configuration === config && obj.Feed === feed;
+      });
+
+      if (match) {
+        this.selectedConfigurationData[i].Composition = match.Composition;
+      }
+    }
   }
 
   selectCongingChangeHandler(e: any) {

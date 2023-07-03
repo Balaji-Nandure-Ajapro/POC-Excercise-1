@@ -29,3 +29,7 @@ td {
   margin-bottom: 0;
   border: 1px;
 }
+
+.form-range::-webkit-slider-runnable-track {
+  background-color: rgb(212, 212, 212);
+}
