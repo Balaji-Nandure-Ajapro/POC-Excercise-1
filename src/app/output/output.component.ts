@@ -11,6 +11,8 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 })
 export class OutputComponent {
   globalCapacity: any;
+  compLimit: any;
+  selectedConfiguration: any = 'Config_0';
 
   constructor(private service: BackendDataService) {}
 
@@ -18,21 +20,35 @@ export class OutputComponent {
     this.fetchModelDate();
   }
 
+  sortConfigurationData(arr: any) {
+    arr.sort(
+      (a: any, b: any) =>
+        a.Configuration.split('_')[1] - b.Configuration.split('_')[1]
+    );
+  }
+
   async fetchModelDate() {
     await this.service.getModelData().subscribe((data: any) => {
       this.globalCapacity = data.global_cap;
+      this.compLimit = data.comp_limit;
 
-      this.globalCapacity.sort(
-        (a: any, b: any) =>
-          a.Configuration.split('_')[1] - b.Configuration.split('_')[1]
-      );
+      this.sortConfigurationData(this.globalCapacity);
+      this.sortConfigurationData(this.compLimit);
+
+      // this.globalCapacity.sort(
+      //   (a: any, b: any) =>
+      //     a.Configuration.split('_')[1] - b.Configuration.split('_')[1]
+      // );
 
       // this.changeFinalDataFormat(this.globalCapacity)
       console.log('Global Capacity Sorted: ', this.globalCapacity);
+      console.log('compLimit Sorted: ', this.compLimit);
 
       this.prepareChart();
     });
   }
+
+  selectCongingChangeHandler(e: any) {}
 
   // changeFinalDataFormat(fd: any) {
   //   return Object.entries(fd).map(([year, value]) => ({

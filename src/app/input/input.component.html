@@ -8,6 +8,7 @@
         <div class="card-body">
             <div class="selection">
                 <span>Region: </span>
+
                 <select (change)="onRegionChangeHandler($event)" class="form-select form-select-sm d-inline-block"
                     aria-label=".form-select-sm example">
                     <option *ngFor="let region of allRegions; let i = index" [value]="region">

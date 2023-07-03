@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent {
-  showChart = 'input';
+  showChart = 'output';
   changeChart(str: string) {
     this.showChart = str;
   }
