@@ -39,7 +39,6 @@ export class InputComponent {
   async fetchFeedsData() {
     await this.service.getfetchData().subscribe((data: any) => {
       this.data = data.data;
-      // console.log("data", this.data);
       this.extractAllRegions();
       this.updateAvailableData();
       this.preparechart();
@@ -47,66 +46,47 @@ export class InputComponent {
   }
 
   extractAllRegions() {
-    // extractiong all regions
-    console.log('Inside extract data');
-    console.log('Data', this.data);
     this.allRegions = this.data.map((obj: any) => {
       return obj.region;
     });
     console.log('allRegions', this.allRegions);
   }
 
-  // call only this function on any changes in filtered data
   updateAvailableData() {
-    // extractiong the object whose region is selected
     this.selectedObject = this.data.filter(
       (i: any) => i.region == this.selectedRegion
     );
-    console.log('selectedObject :', this.selectedObject);
 
-    //update available cities
     this.availableCitiesForSelectedRegion = this.selectedObject[0].cities.map(
       (obj: any) => {
         return obj.city;
       }
-    );
-    console.log(
-      'availableCitiesForSelectedRegion: ',
-      this.availableCitiesForSelectedRegion
     );
 
     this.updateAvailableYears();
   }
 
   updateAvailableYears() {
-    // update available years
     this.availableYears = this.selectedObject[0].cities.filter((obj: any) => {
       return obj.city == this.selectedCity;
     })[0].years;
-    // this.availableYears = this.availableYears[0];
     this.selectedYear = this.availableYears[0];
-    console.log('availableYears: ', this.availableYears);
   }
 
   onRegionChangeHandler(e: any) {
     this.selectedRegion = e.target.value;
-    console.log('selectedRegion:', this.selectedRegion);
     this.updateAvailableData();
     this.preparechart();
   }
 
   onCityChangeHandler(e: any) {
-    // console.log(e.target);
     this.selectedCity = e.target.value;
-    console.log('selectedCity: ', this.selectedCity);
     this.updateAvailableData();
     this.preparechart();
   }
 
   onYearChangeHandler(e: any) {
-    console.log('Year:', e.target.value);
     this.selectedYear = e.target.value;
-
     this.preparechart();
   }
 
@@ -121,23 +101,14 @@ export class InputComponent {
         delete this.finalValues.City;
         delete this.finalValues.Region;
 
-        console.log('finalValues 1: ', this.finalValues);
         Object.keys(this.finalValues).forEach((key: any) => {
           this.finalValues2.push({
             country: key,
             value: this.finalValues[key],
           });
         });
-        console.log('finalValues 2: ', this.finalValues2);
       });
   }
-
-  // changeFinalDataFormat(fd: any) {
-  //   return Object.entries(fd).map(([country, value]) => ({
-  //     country,
-  //     value,
-  //   }));
-  // }
 
   preparechart() {
     let divId = 'chartdiv';
@@ -148,12 +119,8 @@ export class InputComponent {
     });
     var root = am5.Root.new('chartdiv');
 
-    // Set themes
-    // https://www.amcharts.com/docs/v5/concepts/themes/
     root.setThemes([am5themes_Animated.new(root)]);
 
-    // Create chart
-    // https://www.amcharts.com/docs/v5/charts/xy-chart/
     var chart = root.container.children.push(
       am5xy.XYChart.new(root, {
         panX: true,
@@ -164,13 +131,9 @@ export class InputComponent {
       })
     );
 
-    // Add cursor
-    // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
     var cursor = chart.set('cursor', am5xy.XYCursor.new(root, {}));
     cursor.lineY.set('visible', true);
 
-    // Create axes
-    // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
     var xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30 });
     xRenderer.labels.template.setAll({
       rotation: -90,
@@ -201,8 +164,6 @@ export class InputComponent {
       })
     );
 
-    // Create series
-    // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
     var series = chart.series.push(
       am5xy.ColumnSeries.new(root, {
         name: 'Series 1',
@@ -223,63 +184,11 @@ export class InputComponent {
       strokeOpacity: 0,
     });
 
-    // Set data
-    // var data = [
-    //   {
-    //     country: 'Cap',
-    //     value: 2025,
-    //   },
-    //   {
-    //     country: 'China',
-    //     value: 1882,
-    //   },
-    //   {
-    //     country: 'Japan',
-    //     value: 1809,
-    //   },
-    //   {
-    //     country: 'Germany',
-    //     value: 1322,
-    //   },
-    //   {
-    //     country: 'UK',
-    //     value: 1122,
-    //   },
-    //   {
-    //     country: 'France',
-    //     value: 1114,
-    //   },
-    //   {
-    //     country: 'India',
-    //     value: 984,
-    //   },
-    //   {
-    //     country: 'Spain',
-    //     value: 711,
-    //   },
-    //   {
-    //     country: 'Netherlands',
-    //     value: 665,
-    //   },
-    //   {
-    //     country: 'South Korea',
-    //     value: 443,
-    //   },
-    //   {
-    //     country: 'Canada',
-    //     value: 441,
-    //   },
-    // ];
-
     let data = this.finalValues2;
-
-    // let data = this.finalValues;
 
     xAxis.data.setAll(data);
     series.data.setAll(data);
 
-    // Make stuff animate on load
-    // https://www.amcharts.com/docs/v5/concepts/animations/
     series.appear(1000);
     chart.appear(1000, 100);
   }

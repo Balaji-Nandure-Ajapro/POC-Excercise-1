@@ -47,22 +47,6 @@ export class OutputComponent {
       );
 
       this.filterSelectedConfigurationData();
-
-      // this.globalCapacity.sort(
-      //   (a: any, b: any) =>
-      //     a.Configuration.split('_')[1] - b.Configuration.split('_')[1]
-      // );
-
-      // this.changeFinalDataFormat(this.globalCapacity)
-      console.log('Global Capacity Sorted: ', this.globalCapacity);
-      console.log('compLimit Sorted: ', this.compLimit);
-      console.log('allConfigurations: ', this.allConfigurations);
-      console.log(
-        'selectedConfigurationData: ',
-        this.selectedConfigurationData
-      );
-      console.log('globalComposition: ', this.globalComposition);
-
       this.prepareChart();
     });
   }
@@ -77,9 +61,6 @@ export class OutputComponent {
     });
 
     this.combineCompAndLimitData();
-
-    console.log('selectedConfigurationData: ', this.selectedConfigurationData);
-    // console.log('selectedGlobalCompData', this.selectedGlobalCompData);
   }
 
   combineCompAndLimitData() {
@@ -99,29 +80,13 @@ export class OutputComponent {
   selectCongingChangeHandler(e: any) {
     this.selectedConfiguration = e.target.value;
     this.filterSelectedConfigurationData();
-    console.log('selectedConfiguration: ', this.selectedConfiguration);
-    console.log('selectedConfigurationData: ', this.selectedConfigurationData);
   }
 
-  // changeFinalDataFormat(fd: any) {
-  //   return Object.entries(fd).map(([year, value]) => ({
-  //     year,
-  //     value,
-  //   }));
-  // }
-
   prepareChart() {
-    /* Chart code */
-    // Create root element
-    // https://www.amcharts.com/docs/v5/getting-started/#Root_element
     let root = am5.Root.new('chartdivOP');
 
-    // Set themes
-    // https://www.amcharts.com/docs/v5/concepts/themes/
     root.setThemes([am5themes_Animated.new(root)]);
 
-    // Create chart
-    // https://www.amcharts.com/docs/v5/charts/xy-chart/
     let chart = root.container.children.push(
       am5xy.XYChart.new(root, {
         panX: true,
@@ -134,13 +99,9 @@ export class OutputComponent {
       })
     );
 
-    // Add cursor
-    // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
     let cursor = chart.set('cursor', am5xy.XYCursor.new(root, {}));
     cursor.lineY.set('visible', false);
 
-    // Create axes
-    // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
     let xRenderer = am5xy.AxisRendererX.new(root, {
       minGridDistance: 15,
     });
@@ -171,8 +132,6 @@ export class OutputComponent {
       })
     );
 
-    // Create series
-    // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
     let series = chart.series.push(
       am5xy.ColumnSeries.new(root, {
         xAxis: xAxis,
@@ -204,8 +163,6 @@ export class OutputComponent {
     xAxis.data.setAll(data);
     series.data.setAll(data);
 
-    // Make stuff animate on load
-    // https://www.amcharts.com/docs/v5/concepts/animations/
     series.appear(1000);
     chart.appear(1000, 100);
   }
