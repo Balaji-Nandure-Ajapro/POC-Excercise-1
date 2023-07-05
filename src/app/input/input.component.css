@@ -16,3 +16,32 @@
 small {
   color: blueviolet;
 }
+
+.card {
+  border-color: rgb(198, 196, 196);
+  /* border: none; */
+  /* border-radius: 0%; */
+}
+.card-header {
+  background-color: #131313;
+  color: aliceblue;
+}
+
+.card-body {
+  background-color: rgba(19, 17, 17, 0.642);
+  color: aliceblue;
+}
+
+.form-select {
+  color: aliceblue;
+  background-color: transparent;
+}
+
+.form-select:focus {
+  background-color: #131313;
+  color: aliceblue;
+}
+
+/* #chartdiv {
+  color: aliceblue;
+} */

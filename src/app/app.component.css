@@ -1,6 +1,6 @@
 /* Google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Damion&display=swap");
 
-/* html {
-  overflow-y: scroll;
-} */
+body {
+  background-color: blue;
+}

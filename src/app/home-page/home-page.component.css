@@ -1,7 +1,17 @@
+/* 
+  background-color-dark = #131313
+  background-color-gray = #3b3b3b
+
+  text-color = aliceblue;
+ */
+
 nav {
   display: flex;
   align-items: center;
-  background-color: rgba(0, 255, 255, 0.1);
+  background-color: #131313;
+  /* background-color: */
+  z-index: 2;
+  color: aliceblue;
 }
 
 .logo-container {
@@ -13,7 +23,8 @@ nav {
 
 .logo {
   font-size: 40px;
-  color: rgba(0, 0, 0, 0.862);
+  /* color: rgba(0, 0, 0, 0.862); */
+  background-color: var(--on-primary);
 }
 
 .toggle-container {
@@ -26,4 +37,8 @@ nav {
 
 .container {
   margin-top: 15px;
+}
+
+.outer-container {
+  padding: 20px 60px;
 }
