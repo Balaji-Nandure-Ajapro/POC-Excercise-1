@@ -18,11 +18,10 @@ small {
 }
 
 .card {
-  border-color: rgb(198, 196, 196);
-  /* border: none; */
-  /* border-radius: 0%; */
+  border: 1px solid rgb(162, 134, 189);
 }
 .card-header {
+  /* border: 1px solid rgb(162, 134, 189); */
   background-color: #131313;
   color: aliceblue;
 }
@@ -35,6 +34,7 @@ small {
 .form-select {
   color: aliceblue;
   background-color: transparent;
+  border: 1px solid rgb(162, 134, 189);
 }
 
 .form-select:focus {

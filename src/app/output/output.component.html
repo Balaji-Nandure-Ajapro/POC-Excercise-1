@@ -57,8 +57,8 @@
 
                 <div class="d-flex justify-content-between align-items-center px-5">
                     <span style="margin-right: 10px;">{{configObj.min_comp}}</span>
-                    <input disabled style="width: 100%" type="range" (min)="configObj.min_comp" step="0.01"
-                        (max)="configObj.max_comp" class="form-range" [value]="configObj.Composition">
+                    <input [value]="configObj.Composition" disabled style="width: 100%" type="range"
+                        (min)="configObj.min_comp" step="0.01" (max)="configObj.max_comp" class="form-range">
                     <span style="margin-left: 10px;">{{configObj.max_comp}}</span>
                 </div>
 
@@ -68,4 +68,15 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<div *ngIf="isLoading" class="overlay">
+</div>
+<div *ngIf="isLoading" class="centered-container">
+    <div class="spinner-grow text-danger" role="status"></div>
+    <div class="spinner-grow text-warning" role="status"></div>
+    <div class="spinner-grow text-info" role="status"></div>
+
+    <!-- <div class="spinner-border text-secondary" role="status"></div> -->
 </div>

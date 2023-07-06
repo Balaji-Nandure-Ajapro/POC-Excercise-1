@@ -25,10 +25,24 @@ nav {
   font-size: 40px;
   /* color: rgba(0, 0, 0, 0.862); */
   background-color: var(--on-primary);
+  color: blueviolet;
 }
 
 .toggle-container {
-  flex: 1;
+  /* flex: 1; */
+  margin-right: 25px;
+}
+
+.btn-group {
+  border: 1px solid rgb(107, 107, 107);
+  padding: 2px;
+  display: flex;
+  column-gap: 5px;
+}
+
+.btn-group button {
+  padding: 5px 7.5px;
+  border: none;
 }
 
 .excercise2-container {

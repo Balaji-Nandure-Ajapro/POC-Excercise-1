@@ -19,6 +19,8 @@ export class OutputComponent {
   selectedConfigurationData: any = [];
   selectedGlobalCompData: any = [];
 
+  isLoading: boolean = true;
+
   constructor(private service: BackendDataService) {}
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class OutputComponent {
 
   async fetchModelDate() {
     await this.service.getModelData().subscribe((data: any) => {
+      this.isLoading = true;
       this.globalCapacity = data.global_cap;
       this.compLimit = data.comp_limit;
       this.globalComposition = data.global_comp;
@@ -46,6 +49,7 @@ export class OutputComponent {
         (item: any) => item.Configuration
       );
 
+      this.isLoading = false;
       this.filterSelectedConfigurationData();
       this.prepareChart();
     });
